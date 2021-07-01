@@ -1,0 +1,6 @@
+eclipse.preferences.version=1
+encoding//src/org/unibl/etf/mdp/railroad/model/User.java=UTF-8
+encoding//src/org/unibl/etf/mdp/railroad/soap/User.java=UTF-8
+encoding//src/org/unibl/etf/mdp/railroad/soap/UserService.java=UTF-8
+encoding//src/org/unibl/etf/mdp/railroad/soap/UserServiceLocator.java=UTF-8
+encoding//src/org/unibl/etf/mdp/railroad/soap/UserSoapBindingStub.java=UTF-8
