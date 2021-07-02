@@ -14,7 +14,9 @@ import java.util.stream.Collectors;
 import org.unibl.etf.mdp.railroad.archive.ArchiveInterface;
 import org.unibl.etf.mdp.railroad.model.Meta;
 import org.unibl.etf.mdp.railroad.model.Report;
+import org.unibl.etf.mdp.railroad.notifications.Notification;
 import org.unibl.etf.mdp.railroad.view.AddUser;
+import org.unibl.etf.mdp.railroad.view.Alert;
 import org.unibl.etf.mdp.railroad.view.Timetable;
 import org.unibl.etf.mdp.railroad.view.Users;
 
@@ -51,9 +53,8 @@ public class DashboardController {
 		if (System.getSecurityManager() == null) {
 			System.setSecurityManager(new SecurityManager());
 		}
-		Registry registry;
 		try {
-			registry = LocateRegistry.getRegistry(1099);
+			Registry registry = LocateRegistry.getRegistry(1099);
 			archive = (ArchiveInterface) registry.lookup("Archive");
 			if (archive != null) {
 				reportsVBox.getChildren().addAll(archive.list().stream().map(meta -> createRow(meta)).collect(Collectors.toList()));
@@ -63,6 +64,7 @@ public class DashboardController {
 		} catch (NotBoundException e) {
 			e.printStackTrace();
 		}
+		Notification.initialize();
 
 	}
 	
@@ -95,15 +97,15 @@ public class DashboardController {
 		image.setFitHeight(30);
 		HBox.setMargin(image, new Insets(10));
 		Label nameLabel = new Label(meta.getName());
-		nameLabel.setPrefWidth(500);
 		nameLabel.setFont(Font.font("Monospaced", 16.0));
 		Label timeLabel = new Label(meta.getTime());
 		timeLabel.setPrefWidth(300);
 		timeLabel.setFont(Font.font("Monospaced", 14.0));
 		Label sizeLabel = new Label(readableFileSize(meta.getSize()));
-		sizeLabel.setPrefWidth(120);
+		sizeLabel.setPrefWidth(150);
 		sizeLabel.setFont(Font.font("Monospaced", 14.0));
 		Label userLabel = new Label(meta.getUser());
+		userLabel.setPrefWidth(150);
 		userLabel.setFont(Font.font("Monospaced", 14.0));
 		Region spacer = new Region();
 		HBox.setHgrow(spacer, Priority.ALWAYS);
@@ -120,6 +122,7 @@ public class DashboardController {
 					File file = chooser.showDialog(stage);
 					try (FileOutputStream output = new FileOutputStream(file + File.separator + report.getMeta().getName())) {
 						output.write(report.getData());
+						new Alert().display("Report successfully downloaded!");
 					} catch (FileNotFoundException e) {
 						e.printStackTrace();
 					} catch (IOException e) {
@@ -132,7 +135,7 @@ public class DashboardController {
 				
 			}
 		}));
-		hbox.getChildren().addAll(image, nameLabel, timeLabel, sizeLabel, userLabel, spacer, downloadLabel);
+		hbox.getChildren().addAll(image, nameLabel,spacer, timeLabel, sizeLabel, userLabel,  downloadLabel);
 		
 		return hbox;
 	}
