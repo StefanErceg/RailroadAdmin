@@ -8,7 +8,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #5e89e6;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.unibl.etf.mdp.railroad.controller.DashboardController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1300.0" style="-fx-background-color: #5e89e6;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.unibl.etf.mdp.railroad.controller.DashboardController">
    <children>
       <VBox alignment="CENTER" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="50.0">
          <children>
@@ -35,7 +35,7 @@
             </Label>
          </children>
       </VBox>
-      <Label layoutX="50.0" layoutY="155.0" text="Files archive" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="180.0">
+      <Label layoutX="50.0" layoutY="155.0" text="Reports archive" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="180.0">
          <font>
             <Font name="Monospaced Regular" size="18.0" />
          </font>
@@ -60,191 +60,12 @@
           </Menu>
         </menus>
       </MenuBar>
-      <ScrollPane layoutX="50.0" layoutY="220.0" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="220.0">
+      <ScrollPane fitToWidth="true" layoutX="50.0" layoutY="220.0" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="220.0">
          <content>
-            <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="880.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <HBox alignment="CENTER_LEFT" style="-fx-border-color: #aaa;" VBox.vgrow="ALWAYS">
-                     <children>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="NEVER">
-                           <image>
-                              <Image url="@../../../../../../../../assets/icons/picture.png" />
-                           </image>
-                           <HBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </HBox.margin>
-                        </ImageView>
-                        <Label prefWidth="400.0" text="IMG_22_5_2021.jpg" textFill="#000000cc" HBox.hgrow="ALWAYS">
-                           <font>
-                              <Font name="Monospaced Regular" size="16.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </Label>
-                        <Label prefWidth="200.0" text="22.05.2021. 17:53">
-                           <font>
-                              <Font name="Monospaced Regular" size="14.0" />
-                           </font>
-                        </Label>
-                        <Label prefWidth="80.0" text="134.2 kB">
-                           <font>
-                              <Font name="Monospaced Regular" size="14.0" />
-                           </font>
-                        </Label>
-                        <Region HBox.hgrow="ALWAYS" />
-                        <Label alignment="CENTER" prefWidth="100.0" style="-fx-border-color: #000000cc; -fx-border-radius: 8;" text="Download" textFill="#000000cc">
-                           <font>
-                              <Font name="Monospaced Bold" size="16.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                           </HBox.margin>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Label>
-                     </children>
-                     <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" style="-fx-border-color: #aaa;" VBox.vgrow="ALWAYS">
-                     <children>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="NEVER">
-                           <image>
-                              <Image url="@../../../../../../../../assets/icons/video.png" />
-                           </image>
-                           <HBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </HBox.margin>
-                        </ImageView>
-                        <Label prefWidth="400.0" text="Sample_video.mp4" textFill="#000000cc" HBox.hgrow="ALWAYS">
-                           <font>
-                              <Font name="Monospaced Regular" size="16.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </Label>
-                        <Label prefWidth="200.0" text="23.05.2021. 16:44">
-                           <font>
-                              <Font name="Monospaced Regular" size="14.0" />
-                           </font>
-                        </Label>
-                        <Label prefWidth="80.0" text="22.3 MB">
-                           <font>
-                              <Font name="Monospaced Regular" size="14.0" />
-                           </font>
-                        </Label>
-                        <Region HBox.hgrow="ALWAYS" />
-                        <Label alignment="CENTER" prefWidth="100.0" style="-fx-border-color: #000000cc; -fx-border-radius: 8;" text="Download" textFill="#000000cc">
-                           <font>
-                              <Font name="Monospaced Bold" size="16.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                           </HBox.margin>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Label>
-                     </children>
-                     <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" style="-fx-border-color: #aaa;" VBox.vgrow="ALWAYS">
-                     <children>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="NEVER">
-                           <image>
-                              <Image url="@../../../../../../../../assets/icons/pdf.png" />
-                           </image>
-                           <HBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </HBox.margin>
-                        </ImageView>
-                        <Label prefWidth="400.0" text="Projektni_zadatak_MPD.pdf" textFill="#000000cc" HBox.hgrow="ALWAYS">
-                           <font>
-                              <Font name="Monospaced Regular" size="16.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </Label>
-                        <Label prefWidth="200.0" text="21.05.2021. 8:22">
-                           <font>
-                              <Font name="Monospaced Regular" size="14.0" />
-                           </font>
-                        </Label>
-                        <Label prefWidth="80.0" text="3.7 MB">
-                           <font>
-                              <Font name="Monospaced Regular" size="14.0" />
-                           </font>
-                        </Label>
-                        <Region HBox.hgrow="ALWAYS" />
-                        <Label alignment="CENTER" prefWidth="100.0" style="-fx-border-color: #000000cc; -fx-border-radius: 8;" text="Download" textFill="#000000cc">
-                           <font>
-                              <Font name="Monospaced Bold" size="16.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                           </HBox.margin>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Label>
-                     </children>
-                     <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="120.0" style="-fx-border-color: #aaa;" VBox.vgrow="ALWAYS">
-                     <children>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="NEVER">
-                           <image>
-                              <Image url="@../../../../../../../../assets/icons/file.png" />
-                           </image>
-                           <HBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </HBox.margin>
-                        </ImageView>
-                        <Label prefWidth="400.0" text="Sample.java" textFill="#000000cc" HBox.hgrow="ALWAYS">
-                           <font>
-                              <Font name="Monospaced Regular" size="16.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </Label>
-                        <Label prefWidth="200.0" text="17.05.2021. 21:17">
-                           <font>
-                              <Font name="Monospaced Regular" size="14.0" />
-                           </font>
-                        </Label>
-                        <Label prefWidth="80.0" text="22.5 kB">
-                           <font>
-                              <Font name="Monospaced Regular" size="14.0" />
-                           </font>
-                        </Label>
-                        <Region HBox.hgrow="ALWAYS" />
-                        <Label alignment="CENTER" prefWidth="100.0" style="-fx-border-color: #000000cc; -fx-border-radius: 8;" text="Download" textFill="#000000cc">
-                           <font>
-                              <Font name="Monospaced Bold" size="16.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                           </HBox.margin>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Label>
-                     </children>
-                     <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </VBox.margin>
-                  </HBox>
-               </children>
+            <VBox fx:id="reportsVBox" alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
             </VBox>
          </content>
       </ScrollPane>
