@@ -2,10 +2,12 @@ package org.unibl.etf.mdp.railroad.rest;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.unibl.etf.mdp.railroad.model.TrainStation;
+import org.unibl.etf.mdp.railroad.view.Dashboard;
 
 import com.google.gson.Gson;
 
@@ -25,7 +27,7 @@ public class TrainStations {
 			}
 			return trainStations;
 		} catch (JSONException | IOException e) {
-			e.printStackTrace();
+			Dashboard.errorLog.getLogger().log(Level.SEVERE, e.fillInStackTrace().toString());
 			return null;
 		}
 	}

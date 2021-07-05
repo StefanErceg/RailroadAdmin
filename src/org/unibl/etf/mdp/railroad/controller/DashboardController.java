@@ -1,22 +1,23 @@
 package org.unibl.etf.mdp.railroad.controller;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.text.DecimalFormat;
+import java.util.Properties;
+import java.util.logging.Level;
 import java.util.stream.Collectors;
 
+import org.unibl.etf.mdp.railroad.Configuration;
 import org.unibl.etf.mdp.railroad.archive.ArchiveInterface;
 import org.unibl.etf.mdp.railroad.model.Meta;
 import org.unibl.etf.mdp.railroad.model.Report;
 import org.unibl.etf.mdp.railroad.notifications.Notification;
 import org.unibl.etf.mdp.railroad.view.AddUser;
 import org.unibl.etf.mdp.railroad.view.Alert;
+import org.unibl.etf.mdp.railroad.view.Dashboard;
 import org.unibl.etf.mdp.railroad.view.Timetable;
 import org.unibl.etf.mdp.railroad.view.Users;
 
@@ -45,25 +46,30 @@ public class DashboardController {
 	@FXML
 	private VBox reportsVBox;
 	
-	public static final String DIRECTORY =  System.getProperty("user.home") + File.separator + "Railroad" + File.separator + "Archive";
+	public static String DIRECTORY;
+	public static Integer FILE_PORT;
+	public static String CLIENT_POLICY;
 	
 	public void initialize(Stage stage) {
-		this.stage = stage;
-		System.setProperty("java.security.policy", DIRECTORY + File.separator + "policy" + File.separator + "client_policyfile.txt");
-		if (System.getSecurityManager() == null) {
-			System.setSecurityManager(new SecurityManager());
-		}
 		try {
-			Registry registry = LocateRegistry.getRegistry(1099);
-			archive = (ArchiveInterface) registry.lookup("Archive");
-			if (archive != null) {
-				reportsVBox.getChildren().addAll(archive.list().stream().map(meta -> createRow(meta)).collect(Collectors.toList()));
+			Properties properties = Configuration.readParameters();
+			DIRECTORY = properties.getProperty("DIRECTORY");
+			FILE_PORT = Integer.valueOf(properties.getProperty("FILE_PORT"));
+			CLIENT_POLICY = properties.getProperty("CLIENT_POLICY");
+			this.stage = stage;
+			System.setProperty("java.security.policy", CLIENT_POLICY);
+			if (System.getSecurityManager() == null) {
+				System.setSecurityManager(new SecurityManager());
 			}
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		} catch (NotBoundException e) {
-			e.printStackTrace();
-		}
+	
+				Registry registry = LocateRegistry.getRegistry(FILE_PORT);
+				archive = (ArchiveInterface) registry.lookup("Archive");
+				if (archive != null) {
+					reportsVBox.getChildren().addAll(archive.list().stream().map(meta -> createRow(meta)).collect(Collectors.toList()));
+			}
+		} catch (Exception e) {
+			Dashboard.errorLog.getLogger().log(Level.SEVERE, e.fillInStackTrace().toString());
+		} 
 		Notification.initialize();
 
 	}
@@ -123,13 +129,11 @@ public class DashboardController {
 					try (FileOutputStream output = new FileOutputStream(file + File.separator + report.getMeta().getName())) {
 						output.write(report.getData());
 						new Alert().display("Report successfully downloaded!");
-					} catch (FileNotFoundException e) {
-						e.printStackTrace();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
+					} catch (Exception e) {
+						Dashboard.errorLog.getLogger().log(Level.SEVERE, e.fillInStackTrace().toString());
+					} 
 				} catch (RemoteException e) {
-					e.printStackTrace();
+					Dashboard.errorLog.getLogger().log(Level.SEVERE, e.fillInStackTrace().toString());
 				}
 
 				

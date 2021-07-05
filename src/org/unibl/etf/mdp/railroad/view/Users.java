@@ -1,5 +1,7 @@
 package org.unibl.etf.mdp.railroad.view;
 
+import java.util.logging.Level;
+
 import org.unibl.etf.mdp.railroad.controller.UsersController;
 
 import javafx.fxml.FXMLLoader;
@@ -20,7 +22,7 @@ public class Users {
 		controller.initialize(stage);
 		stage.showAndWait();
 	} catch(Exception e) {
-		e.printStackTrace();
+		Dashboard.errorLog.getLogger().log(Level.SEVERE, e.fillInStackTrace().toString());
 	}
 }
 

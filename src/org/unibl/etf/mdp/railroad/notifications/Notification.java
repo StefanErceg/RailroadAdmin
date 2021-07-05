@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
+import java.util.logging.Level;
 
 import org.unibl.etf.mdp.railroad.view.Alert;
+import org.unibl.etf.mdp.railroad.view.Dashboard;
 
 import javafx.application.Platform;
 
@@ -27,7 +29,7 @@ public class Notification {
         active = true;
         listen();
 		} catch(Exception e) {
-			e.printStackTrace();
+			Dashboard.errorLog.getLogger().log(Level.SEVERE, e.fillInStackTrace().toString());
 		}
 	}
 	
@@ -42,7 +44,7 @@ public class Notification {
 	                try {
 						socket.receive(packet);
 					} catch (IOException e) {
-						e.printStackTrace();
+						Dashboard.errorLog.getLogger().log(Level.SEVERE, e.fillInStackTrace().toString());
 					}
 	                String received = new String(packet.getData(), 0, packet.getLength());
 	                String[] parsed = received.split(DELIMITER);

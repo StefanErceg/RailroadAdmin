@@ -1,4 +1,6 @@
 package org.unibl.etf.mdp.railroad.view;
+import java.util.logging.Level;
+
 import org.unibl.etf.mdp.railroad.controller.AddTrainLineController;
 
 import javafx.fxml.FXMLLoader;
@@ -20,7 +22,7 @@ public class AddTrainLine {
 			controller.initialize(stage);
 			stage.showAndWait();
 		} catch(Exception e) {
-			e.printStackTrace();
+			Dashboard.errorLog.getLogger().log(Level.SEVERE, e.fillInStackTrace().toString());
 		}
 	}
 }

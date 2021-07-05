@@ -1,5 +1,7 @@
 package org.unibl.etf.mdp.railroad.view;
 
+import java.util.logging.Level;
+
 import org.unibl.etf.mdp.railroad.controller.AlertController;
 
 import javafx.fxml.FXMLLoader;
@@ -24,7 +26,7 @@ public class Alert {
 	        controller.initialize(stage, message);
 	        stage.showAndWait();
 	    	} catch(Exception e) {
-	    		e.printStackTrace();
+	    		Dashboard.errorLog.getLogger().log(Level.SEVERE, e.fillInStackTrace().toString());
 	    	}
 	    }
 	}

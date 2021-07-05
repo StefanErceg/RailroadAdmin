@@ -1,5 +1,7 @@
 package org.unibl.etf.mdp.railroad.view;
 
+import java.util.logging.Level;
+
 import org.unibl.etf.mdp.railroad.controller.TimetableController;
 
 import javafx.fxml.FXMLLoader;
@@ -21,7 +23,7 @@ public class Timetable {
 			controller.initialize(stage);
 			stage.showAndWait();
 		} catch(Exception e) {
-			e.printStackTrace();
+			Dashboard.errorLog.getLogger().log(Level.SEVERE, e.fillInStackTrace().toString());
 		}
 	}
 

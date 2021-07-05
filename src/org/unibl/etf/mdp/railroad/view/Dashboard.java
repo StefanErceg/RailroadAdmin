@@ -1,5 +1,9 @@
 package org.unibl.etf.mdp.railroad.view;
 
+import java.util.logging.Level;
+
+import org.unibl.etf.mdp.railroad.Configuration;
+import org.unibl.etf.mdp.railroad.ErrorLog;
 import org.unibl.etf.mdp.railroad.controller.DashboardController;
 
 import javafx.application.Application;
@@ -8,6 +12,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Dashboard extends Application {
+	
+	public static ErrorLog errorLog = new ErrorLog();
 
 	@Override
 	public void start(Stage stage) throws Exception {
@@ -21,17 +27,19 @@ public class Dashboard extends Application {
         controller.initialize(stage);
         stage.show();
 		} catch(Exception e) {
-			e.printStackTrace();
+			errorLog.getLogger().log(Level.SEVERE, e.fillInStackTrace().toString());
 		}
 	}
 
     public static void main(String[] args) {
         try {
+        	if (!Configuration.checkIfFileExists()) {
+        		Configuration.writeConfiguration();
+        	}
             launch(args);
 
-        } catch (Exception ex) {
-           System.out.println(ex.getMessage());
-          	ex.printStackTrace();
+        } catch (Exception e) {
+           errorLog.getLogger().log(Level.SEVERE, e.fillInStackTrace().toString());
         }
     }
 }

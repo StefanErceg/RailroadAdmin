@@ -3,10 +3,8 @@ package org.unibl.etf.mdp.railroad.controller;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-import org.unibl.etf.mdp.railroad.model.TrainLine;
 import org.unibl.etf.mdp.railroad.model.TrainStation;
 import org.unibl.etf.mdp.railroad.model.User;
-import org.unibl.etf.mdp.railroad.rest.TrainLines;
 import org.unibl.etf.mdp.railroad.rest.TrainStations;
 import org.unibl.etf.mdp.railroad.soap.ClientSOAP;
 

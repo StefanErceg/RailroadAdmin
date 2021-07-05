@@ -7,14 +7,15 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.logging.Level;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.unibl.etf.mdp.railroad.model.TrainLine;
+import org.unibl.etf.mdp.railroad.view.Dashboard;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 
 public class TrainLines {
 	public static final String base = Root.base + "/trainLines";
@@ -31,7 +32,7 @@ public class TrainLines {
 			}
 			return trainLines;
 		} catch (JSONException | IOException e) {
-			e.printStackTrace();
+			Dashboard.errorLog.getLogger().log(Level.SEVERE, e.fillInStackTrace().toString());
 			return null;
 		}
 	}
@@ -48,7 +49,7 @@ public class TrainLines {
 			}
 			return trainLines;
 		} catch (JSONException | IOException e) {
-			e.printStackTrace();
+			Dashboard.errorLog.getLogger().log(Level.SEVERE, e.fillInStackTrace().toString());
 			return null;
 		}
 	}
@@ -74,12 +75,12 @@ public class TrainLines {
 					return trainLine;
 				}
 				catch (Exception e) { 
-					e.printStackTrace();
+					Dashboard.errorLog.getLogger().log(Level.SEVERE, e.fillInStackTrace().toString());
 				}
 			}
 			
 		} catch(Exception e) {
-			e.printStackTrace();
+			Dashboard.errorLog.getLogger().log(Level.SEVERE, e.fillInStackTrace().toString());
 		}
 		return null;
 	}
@@ -108,14 +109,34 @@ public class TrainLines {
 					TrainLine response = gson.fromJson(new JSONObject(data).toString(), TrainLine.class);
 					return response;
 				} catch(Exception e) {
-					e.printStackTrace();
+					Dashboard.errorLog.getLogger().log(Level.SEVERE, e.fillInStackTrace().toString());
 				}
 			}
 		
 		} catch(Exception e) {
-			e.printStackTrace();
+			Dashboard.errorLog.getLogger().log(Level.SEVERE, e.fillInStackTrace().toString());
 		}
 		return null;
+	}
+	
+	public static boolean delete(String trainLineId) {
+		try {
+			URL url = new URL(base + "/" + trainLineId);
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setDoOutput(true);
+			conn.setRequestMethod("DELETE");
+			OutputStream os = conn.getOutputStream();
+			os.flush();
+			if (conn.getResponseCode() != HttpURLConnection.HTTP_OK) {
+				throw new Exception("Error happened while deleting train line");
+			}
+			os.close();
+			conn.disconnect();
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 	
 }
